@@ -1,3 +1,0 @@
-A quick quaternion implementation for Android.
-
-The only Android dependency in this project is adroid.util.FloatMath. A stub implementation of this class has been provided under /test so that you can run the unit tests on a normal desktop.

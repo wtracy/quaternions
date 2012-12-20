@@ -22,6 +22,62 @@ public class QuaternionTest {
 		
 		assertTrue(q2.isEquivalentTo(q3));
 	}
+	
+	protected void checkArraysAreEquivalent(float[] a, float[] b) {
+		assertEquals(a.length, b.length);
+		
+		for (int i = 0; i < a.length; ++i) {
+			assertEquals(a[i], b[i], 0.001d);
+		}
+	}
+	
+	@Test
+	public void testUnitQuaternion() {
+		float fromQuaternion[] = new Quaternion().getMatrix();
+		float literal[] = new float[] {
+				1f, 0f, 0f, 0f,
+				0f, 1f, 0f, 0f,
+				0f, 0f, 1f, 0f,
+				0f, 0f, 0f, 1f
+		};
+		checkArraysAreEquivalent(fromQuaternion, literal);
+	}
+	
+	@Test
+	public void testXAxisRotation() {
+		float fromQuaternion[] = Quaternion.createFromAxisAngle(1f, 0f, 0f, (float)Math.PI/2f).getMatrix();
+		float literal[] = new float[] {
+				1f, 0f,  0f, 0f,
+				0f, 0f, -1f, 0f,
+				0f, 1f,  0f, 0f,
+				0f, 0f,  0f, 1f
+		};
+		checkArraysAreEquivalent(fromQuaternion, literal);
+	}
+	
+	@Test
+	public void testYAxisRotation() {
+		float fromQuaternion[] = Quaternion.createFromAxisAngle(0f, 1f, 0f, (float)Math.PI/2f).getMatrix();
+		float literal[] = new float[] {
+				 0f, 0f,  1f, 0f,
+				 0f, 1f,  0f, 0f,
+				-1f, 0f,  0f, 0f,
+				 0f, 0f,  0f, 1f
+		};
+		checkArraysAreEquivalent(fromQuaternion, literal);
+	}
+	
+	@Test
+	public void testZAxisRotation() {
+		float fromQuaternion[] = Quaternion.createFromAxisAngle(0f, 0f, 1f, (float)Math.PI/2f).getMatrix();
+		float literal[] = new float[] {
+				0f, -1f,  0f, 0f,
+				1f,  0f,  0f, 0f,
+				0f,  0f,  1f, 0f,
+				0f,  0f,  0f, 1f
+		};
+		checkArraysAreEquivalent(fromQuaternion, literal);
+	}
 
 	@Test
 	public void testXAxisRotationConcatenation() {

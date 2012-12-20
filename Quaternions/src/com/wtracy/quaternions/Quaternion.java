@@ -39,21 +39,20 @@ public class Quaternion {
 	 * Given a unit vector and a rotation, generates a unit Quaternion.
 	 */
 	public static Quaternion createFromAxisAngle(float x1, float y1, float z1, float angle) {
-		float w = FloatMath.cos(angle/2);
-		float x = (x1 * FloatMath.sin(angle/2));
-		float y = (y1 * FloatMath.sin(angle/2));
-		float z = (z1 * FloatMath.sin(angle/2));
+		float halfAngle = angle/2;
+		float sinHalfAngle = FloatMath.sin(halfAngle);
+		
+		float w = FloatMath.cos(halfAngle);
+		float x = (x1 * sinHalfAngle);
+		float y = (y1 * sinHalfAngle);
+		float z = (z1 * sinHalfAngle);
 		return new Quaternion(w, x, y, z);
 	}
-	
-	
-	
-
 	
 	/**
 	 * Returns a new Quaternion representing the product of this
 	 * Quaternion and the second one.
-	 * @param q2
+	 * @param q2 The Quaternion to multiply this one by.
 	 * @return The product of the Quaternion and q2.
 	 */
 	public Quaternion times(Quaternion q2) {
@@ -68,7 +67,7 @@ public class Quaternion {
 	/**
 	 * Generates a matrix representing the transformation performed
 	 * by the Quaternion's rotation.
-	 * @return
+	 * @return An array representation of the transformation matrix.
 	 */
 	public float[] getMatrix() {
 		return new float[] {
@@ -83,10 +82,20 @@ public class Quaternion {
 		};
 	}
 	
+	/**
+	 * Convenience method. Returns a human-readable representation of the
+	 * Quaternion's state.
+	 */
 	public String toString() {
 		return "w = " + w + ", x = " + x + ", y = " + y + ", z = " + z + ", m^2 = " + (w*w + x*x + y*y + z*z);
 	}
 	
+	/**
+	 * Convenience method for testing. Tests whether this Quaternion and the
+	 * given Quaternion represent roughly equivalent values.
+	 * @param q2 The Quaternion to compare against.
+	 * @return True if the Quaternions are roughly equal, false otherwise.
+	 */
 	public boolean isEquivalentTo(Quaternion q2) {
 		return 
 				Math.abs(w-q2.w) < tolerance &&
@@ -94,7 +103,11 @@ public class Quaternion {
 				Math.abs(y-q2.y) < tolerance &&
 				Math.abs(z-q2.z) < tolerance;
 	}
-	
+
+	/*
+	 * Methods for retrieving an axis-angle representation of the rotation.
+	 */
+	/*
 	public float getAxisAngleX() {
 		return x / FloatMath.sqrt(x*x + y*y + z*z);
 	}
@@ -110,4 +123,5 @@ public class Quaternion {
 	public double getAxisAngleRotation() {
 		return Math.acos(w)*2d;
 	}
+	*/
 }
