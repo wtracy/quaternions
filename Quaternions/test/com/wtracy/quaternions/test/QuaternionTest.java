@@ -97,6 +97,7 @@ public class QuaternionTest {
 	@Test
 	public void testXZRotationConcatenation() {
 		float v = (float)Math.sqrt(2.0);
+		System.out.println("sqrt(2)=" + v);
 		checkRotationConcatenation(v, 0f, v);
 	}
 }

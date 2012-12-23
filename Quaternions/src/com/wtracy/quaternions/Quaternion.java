@@ -22,6 +22,8 @@ public class Quaternion {
 		float magnitudeSquared = w*w + x*x + y*y + z*z;
 		
 		if ((magnitudeSquared - 1f) > tolerance) {
+		//if (false){
+			System.out.println("m^2=" + magnitudeSquared);
 			float magnitude = FloatMath.sqrt(magnitudeSquared);
 			this.w = w / magnitude;
 			this.x = x / magnitude;
@@ -56,12 +58,13 @@ public class Quaternion {
 	 * @return The product of the Quaternion and q2.
 	 */
 	public Quaternion times(Quaternion q2) {
-		Quaternion q1 = this;
-		float w = q1.w*q2.w - q1.x*q2.x - q1.y*q2.y - q1.z*q2.z;
-		float x = q1.x*q2.w + q1.w*q2.x + q1.z*q2.y - q1.y*q2.z;
-		float y = q1.w*q2.y - q1.x*q2.z + q1.y*q2.w + q1.z*q2.x;
-		float z = q1.w*q2.z - q2.x*q2.y + q1.y*q2.x + q1.z*q2.w;
-		return new Quaternion(w, x, y, z);
+	    Quaternion q1 = this;
+	    float w = q1.w*q2.w - q1.x*q2.x - q1.y*q2.y - q1.z*q2.z;
+	    float x = q1.x*q2.w + q1.w*q2.x - q1.z*q2.y + q1.y*q2.z;
+	    float y = q1.w*q2.y - q1.x*q2.z + q1.y*q2.w + q1.z*q2.x;
+	    float z = q1.w*q2.z + q1.x*q2.y - q1.y*q2.x + q1.z*q2.w;
+	    
+	    return new Quaternion(w, x, y, z);
 	}
 	
 	/**
