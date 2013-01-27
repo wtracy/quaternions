@@ -112,25 +112,4 @@ public class Quaternion {
 				Math.abs(y-q2.y) < tolerance &&
 				Math.abs(z-q2.z) < tolerance;
 	}
-
-	/*
-	 * Methods for retrieving an axis-angle representation of the rotation.
-	 */
-	/*
-	public float getAxisAngleX() {
-		return x / FloatMath.sqrt(x*x + y*y + z*z);
-	}
-	
-	public float getAxisAngleY() {
-		return y / FloatMath.sqrt(x*x + y*y + z*z);
-	}
-	
-	public float getAxisAngleZ() {
-		return z / FloatMath.sqrt(x*x + y*y + z*z);
-	}
-	
-	public double getAxisAngleRotation() {
-		return Math.acos(w)*2d;
-	}
-	*/
 }
