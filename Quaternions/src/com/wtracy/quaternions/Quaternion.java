@@ -22,7 +22,6 @@ public class Quaternion {
 		float magnitudeSquared = w*w + x*x + y*y + z*z;
 		
 		if ((magnitudeSquared - 1f) > tolerance) {
-		//if (false){
 			System.out.println("m^2=" + magnitudeSquared);
 			float magnitude = FloatMath.sqrt(magnitudeSquared);
 			this.w = w / magnitude;
@@ -41,13 +40,20 @@ public class Quaternion {
 	 * Given a unit vector and a rotation, generates a unit Quaternion.
 	 */
 	public static Quaternion createFromAxisAngle(float x1, float y1, float z1, float angle) {
+		/* This check ensures that we have a valid unit vector as input.
+		 * It is only commented out for performance reasons.
+		 */
+		/*float lenSquared = (x1*x1 + y1*y1 + z1*z1);
+		if (lenSquared - 1f > tolerance)
+			throw new IllegalArgumentException("lenQuared is " + lenSquared);*/
+		
 		float halfAngle = angle/2;
 		float sinHalfAngle = FloatMath.sin(halfAngle);
 		
 		float w = FloatMath.cos(halfAngle);
-		float x = (x1 * sinHalfAngle);
-		float y = (y1 * sinHalfAngle);
-		float z = (z1 * sinHalfAngle);
+		float x = x1 * sinHalfAngle;
+		float y = y1 * sinHalfAngle;
+		float z = z1 * sinHalfAngle;
 		return new Quaternion(w, x, y, z);
 	}
 	

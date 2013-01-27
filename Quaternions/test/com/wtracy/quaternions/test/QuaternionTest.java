@@ -20,7 +20,20 @@ public class QuaternionTest {
 		System.out.println(q3);
 		System.out.println("===");
 		
-		assertTrue(q2.isEquivalentTo(q3));
+		//assertTrue(q2.isEquivalentTo(q3));
+		float[] m2 = q2.getMatrix();
+		float[] m3 = q3.getMatrix();
+		dumpArray(m2);
+		dumpArray(m3);
+		checkArraysAreEquivalent(m2, m3);
+	}
+	
+	protected void dumpArray(float[] array) {
+		for (int i = 0; i < array.length; ++i) {
+			System.out.print(array[i]);
+			System.out.print(", ");
+		}
+		System.out.println("");
 	}
 	
 	protected void checkArraysAreEquivalent(float[] a, float[] b) {
@@ -96,8 +109,8 @@ public class QuaternionTest {
 	
 	@Test
 	public void testXZRotationConcatenation() {
-		float v = (float)Math.sqrt(2.0);
-		System.out.println("sqrt(2)=" + v);
+		float v = (float)Math.sqrt(0.5f);
+		System.out.println("sqrt(.5)=" + v);
 		checkRotationConcatenation(v, 0f, v);
 	}
 }
