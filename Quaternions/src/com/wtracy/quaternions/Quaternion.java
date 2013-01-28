@@ -22,7 +22,6 @@ public class Quaternion {
 		float magnitudeSquared = w*w + x*x + y*y + z*z;
 		
 		if ((magnitudeSquared - 1f) > tolerance) {
-			System.out.println("m^2=" + magnitudeSquared);
 			float magnitude = FloatMath.sqrt(magnitudeSquared);
 			this.w = w / magnitude;
 			this.x = x / magnitude;
@@ -54,6 +53,7 @@ public class Quaternion {
 		float x = x1 * sinHalfAngle;
 		float y = y1 * sinHalfAngle;
 		float z = z1 * sinHalfAngle;
+		
 		return new Quaternion(w, x, y, z);
 	}
 	
