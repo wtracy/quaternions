@@ -3,6 +3,10 @@ package com.wtracy.quaternions;
 import android.util.FloatMath;
 
 public class Quaternion {
+	/**
+	 * Indicates the error tolerance for Quaternion objects. Objects that
+	 * exceed this tolerance are automatically re-normalized.
+	 */
 	static final float tolerance = 0.001f;
 	protected final float x;
 	protected final float y;
@@ -17,7 +21,14 @@ public class Quaternion {
 		y = z = x = 0f;
 	}
 	
-	
+	/**
+	 * Constructs a Quaternion from the literal arguments given. Internally,
+	 * The Quaternion is automatically converted to a unit Quaternion.
+	 * @param w
+	 * @param x
+	 * @param y
+	 * @param z
+	 */
 	private Quaternion(float w, float x, float y, float z) {
 		float magnitudeSquared = w*w + x*x + y*y + z*z;
 		
