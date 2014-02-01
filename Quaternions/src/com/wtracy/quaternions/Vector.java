@@ -1,5 +1,7 @@
 package com.wtracy.quaternions;
 
+import android.util.FloatMath;
+
 public class Vector {
 	protected final float x;
 	protected final float y;
@@ -51,5 +53,15 @@ public class Vector {
 				Math.abs(x-v.x) < tolerance &&
 				Math.abs(y-v.y) < tolerance &&
 				Math.abs(z-v.z) < tolerance;
+	}
+	
+	public Vector normalize() {
+		float root = FloatMath.sqrt(x*x + y*y + z*z);
+		
+		return new Vector(x / root, y / root, z / root);
+	}
+	
+	public String toString() {
+		return "<" + x + ", " + y + ", " + z + ">";
 	}
 }
