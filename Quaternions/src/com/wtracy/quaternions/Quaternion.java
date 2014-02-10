@@ -84,6 +84,10 @@ public class Quaternion {
 	    return new Quaternion(w, x, y, z);
 	}
 	
+	public Quaternion inverse() {
+		return new Quaternion(w, -x, -y, -z);
+	}
+	
 	/**
 	 * Generates a matrix representing the transformation performed
 	 * by the Quaternion's rotation.
